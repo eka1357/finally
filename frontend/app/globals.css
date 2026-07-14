@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #0d1117;
+  color: #e6edf3;
+  font-family: Inter, Segoe UI, system-ui, -apple-system, sans-serif;
+  overflow: hidden;
+}
+
+/* Dense terminal scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0d1117;
+}
+::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #484f58;
+}
+
+.panel {
+  @apply bg-terminal-panel border border-terminal-border rounded-sm shadow-panel;
+}
+
+.panel-header {
+  @apply flex items-center justify-between px-3 py-1.5 border-b border-terminal-border bg-terminal-elevated/80;
+}
+
+.panel-title {
+  @apply text-[11px] font-semibold tracking-[0.12em] uppercase text-terminal-muted;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+/* Grid layout for trading terminal */
+.terminal-grid {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr) 340px;
+  grid-template-rows: 48px minmax(0, 1fr) 220px;
+  grid-template-areas:
+    "header header header"
+    "watchlist main chat"
+    "positions bottom chat";
+  height: 100vh;
+  gap: 6px;
+  padding: 6px;
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(32, 157, 215, 0.08), transparent 50%),
+    radial-gradient(900px 500px at 90% 0%, rgba(236, 173, 10, 0.06), transparent 45%),
+    #0d1117;
+}
+
+@media (max-width: 1280px) {
+  .terminal-grid {
+    grid-template-columns: 280px minmax(0, 1fr);
+    grid-template-rows: 48px minmax(0, 1fr) 200px 280px;
+    grid-template-areas:
+      "header header"
+      "watchlist main"
+      "positions bottom"
+      "chat chat";
+    overflow: auto;
+    height: 100vh;
+  }
+}
+
+.area-header {
+  grid-area: header;
+}
+.area-watchlist {
+  grid-area: watchlist;
+  min-height: 0;
+}
+.area-main {
+  grid-area: main;
+  min-height: 0;
+}
+.area-chat {
+  grid-area: chat;
+  min-height: 0;
+}
+.area-positions {
+  grid-area: positions;
+  min-height: 0;
+}
+.area-bottom {
+  grid-area: bottom;
+  min-height: 0;
+}

@@ -1,0 +1,14 @@
+services:
+  finally:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - finally-data:/app/db
+    environment:
+      - DB_PATH=/app/db/finally.db
+
+volumes:
+  finally-data:
